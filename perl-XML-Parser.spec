@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-Parser
 Version  : 2.36
-Release  : 23
+Release  : 24
 URL      : http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/XML-Parser-2.36.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/XML-Parser-2.36.tar.gz
 Summary  : No detailed summary available
