@@ -1,2 +1,3 @@
-2.36
+2.44
 perl(LWP)
+perl(LWP::UserAgent)
