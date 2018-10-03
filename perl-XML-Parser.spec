@@ -4,14 +4,14 @@
 #
 Name     : perl-XML-Parser
 Version  : 2.36
-Release  : 25
+Release  : 26
 URL      : http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/XML-Parser-2.36.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/XML-Parser-2.36.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
-Requires: perl-XML-Parser-lib
-Requires: perl-XML-Parser-doc
+Requires: perl-XML-Parser-lib = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : expat-dev
 BuildRequires : perl(LWP)
 
@@ -21,12 +21,14 @@ All rights reserved.
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
-%package doc
-Summary: doc components for the perl-XML-Parser package.
-Group: Documentation
+%package dev
+Summary: dev components for the perl-XML-Parser package.
+Group: Development
+Requires: perl-XML-Parser-lib = %{version}-%{release}
+Provides: perl-XML-Parser-devel = %{version}-%{release}
 
-%description doc
-doc components for the perl-XML-Parser package.
+%description dev
+dev components for the perl-XML-Parser package.
 
 
 %package lib
@@ -47,7 +49,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 else
 %{__perl} Build.PL
 ./Build
@@ -102,9 +104,15 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Subs.pm
 /usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Tree.pm
 
-%files doc
+%files dev
 %defattr(-,root,root,-)
-%doc /usr/share/man/man3/*
+/usr/share/man/man3/XML::Parser.3
+/usr/share/man/man3/XML::Parser::Expat.3
+/usr/share/man/man3/XML::Parser::Style::Debug.3
+/usr/share/man/man3/XML::Parser::Style::Objects.3
+/usr/share/man/man3/XML::Parser::Style::Stream.3
+/usr/share/man/man3/XML::Parser::Style::Subs.3
+/usr/share/man/man3/XML::Parser::Style::Tree.3
 
 %files lib
 %defattr(-,root,root,-)
