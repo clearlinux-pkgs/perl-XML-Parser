@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-Parser
 Version  : 2.44
-Release  : 27
+Release  : 28
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.44.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.44.tar.gz
 Summary  : 'A perl module for parsing XML documents'
@@ -13,6 +13,7 @@ License  : Artistic-1.0-Perl
 Requires: perl-XML-Parser-lib = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : expat-dev
+BuildRequires : perl(LWP)
 BuildRequires : perl(LWP::UserAgent)
 
 %description
@@ -65,9 +66,9 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -76,37 +77,37 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/Japanese_Encodings.msg
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/README
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/big5.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/euc-kr.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/ibm866.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-2.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-3.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-4.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-5.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-7.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-8.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-9.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/koi8-r.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1250.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1251.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1252.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1255.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-euc-jp-jisx0221.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-euc-jp-unicode.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-cp932.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-jdk117.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-jisx0221.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-unicode.enc
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Expat.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/LWPExternEnt.pl
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Debug.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Objects.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Stream.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Subs.pm
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Tree.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/Japanese_Encodings.msg
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/README
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/big5.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/euc-kr.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/ibm866.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-2.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-3.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-4.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-5.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-7.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-8.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-9.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/koi8-r.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1250.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1251.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1252.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1255.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-euc-jp-jisx0221.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-euc-jp-unicode.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-cp932.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-jdk117.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-jisx0221.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-unicode.enc
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Expat.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/LWPExternEnt.pl
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Debug.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Objects.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Stream.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Subs.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/XML/Parser/Style/Tree.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -120,4 +121,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/XML/Parser/Expat/Expat.so
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/XML/Parser/Expat/Expat.so
