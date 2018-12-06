@@ -4,7 +4,7 @@
 #
 Name     : perl-XML-Parser
 Version  : 2.44
-Release  : 30
+Release  : 31
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.44.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.44.tar.gz
 Summary  : 'A perl module for parsing XML documents'
