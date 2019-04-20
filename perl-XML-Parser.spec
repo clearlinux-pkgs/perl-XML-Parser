@@ -4,10 +4,10 @@
 #
 Name     : perl-XML-Parser
 Version  : 2.44
-Release  : 34
+Release  : 35
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.44.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.44.tar.gz
-Summary  : 'A perl module for parsing XML documents'
+Summary  : Expat-based XML parser module for perl
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
 Requires: perl-XML-Parser-lib = %{version}-%{release}
@@ -17,16 +17,18 @@ BuildRequires : perl(LWP)
 BuildRequires : perl(LWP::UserAgent)
 
 %description
-XML::Parser Version 2.40
-All rights reserved.
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+This directory contains binary encoding maps for some selected encodings.
+If they are placed in a directory listed in @XML::Parser::Expat::Encoding_Path,
+then they are automatically loaded by the XML::Parser::Expat::load_encoding
+function as needed. Otherwise you may load what you need directly by
+explicitly calling this function.
 
 %package dev
 Summary: dev components for the perl-XML-Parser package.
 Group: Development
 Requires: perl-XML-Parser-lib = %{version}-%{release}
 Provides: perl-XML-Parser-devel = %{version}-%{release}
+Requires: perl-XML-Parser = %{version}-%{release}
 
 %description dev
 dev components for the perl-XML-Parser package.
