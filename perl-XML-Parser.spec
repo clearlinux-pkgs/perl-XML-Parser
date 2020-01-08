@@ -4,48 +4,48 @@
 #
 Name     : perl-XML-Parser
 Version  : 2.46
-Release  : 37
+Release  : 38
 URL      : https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.46.tar.gz
-Summary  : Expat-based XML parser module for perl
+Summary  : 'A perl module for parsing XML documents'
 Group    : Development/Tools
 License  : Artistic-1.0-Perl
-Requires: perl-XML-Parser-lib = %{version}-%{release}
+Requires: perl-XML-Parser-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : expat-dev
 BuildRequires : perl(Encode::Locale)
+BuildRequires : perl(LWP)
 BuildRequires : perl(LWP::UserAgent)
 BuildRequires : perl-LWP-MediaTypes
 
 %description
-This directory contains binary encoding maps for some selected encodings.
-If they are placed in a directory listed in @XML::Parser::Expat::Encoding_Path,
-then they are automatically loaded by the XML::Parser::Expat::load_encoding
-function as needed. Otherwise you may load what you need directly by
-explicitly calling this function.
+NAME
+XML::Parser - A perl module for parsing XML documents
+SYNOPSIS
+use XML::Parser;
 
 %package dev
 Summary: dev components for the perl-XML-Parser package.
 Group: Development
-Requires: perl-XML-Parser-lib = %{version}-%{release}
 Provides: perl-XML-Parser-devel = %{version}-%{release}
-Requires: perl-XML-Parser = %{version}-%{release}
 Requires: perl-XML-Parser = %{version}-%{release}
 
 %description dev
 dev components for the perl-XML-Parser package.
 
 
-%package lib
-Summary: lib components for the perl-XML-Parser package.
-Group: Libraries
+%package perl
+Summary: perl components for the perl-XML-Parser package.
+Group: Default
+Requires: perl-XML-Parser = %{version}-%{release}
 
-%description lib
-lib components for the perl-XML-Parser package.
+%description perl
+perl components for the perl-XML-Parser package.
 
 
 %prep
 %setup -q -n XML-Parser-2.46
+cd %{_builddir}/XML-Parser-2.46
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -81,38 +81,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser.pm
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/Japanese_Encodings.msg
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/README
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/big5.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/euc-kr.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/ibm866.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-15.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-2.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-3.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-4.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-5.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-7.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-8.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-9.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/koi8-r.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1250.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1251.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1252.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1255.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/x-euc-jp-jisx0221.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/x-euc-jp-unicode.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-cp932.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-jdk117.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-jisx0221.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-unicode.enc
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Expat.pm
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/LWPExternEnt.pl
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Style/Debug.pm
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Style/Objects.pm
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Style/Stream.pm
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Style/Subs.pm
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/XML/Parser/Style/Tree.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -124,6 +92,38 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/XML::Parser::Style::Subs.3
 /usr/share/man/man3/XML::Parser::Style::Tree.3
 
-%files lib
+%files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/x86_64-linux-thread-multi/auto/XML/Parser/Expat/Expat.so
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/Japanese_Encodings.msg
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/README
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/big5.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/euc-kr.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/ibm866.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-15.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-2.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-3.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-4.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-5.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-7.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-8.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/iso-8859-9.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/koi8-r.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1250.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1251.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1252.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/windows-1255.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-euc-jp-jisx0221.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-euc-jp-unicode.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-cp932.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-jdk117.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-jisx0221.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Encodings/x-sjis-unicode.enc
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Expat.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/LWPExternEnt.pl
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Style/Debug.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Style/Objects.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Style/Stream.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Style/Subs.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/XML/Parser/Style/Tree.pm
+/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/XML/Parser/Expat/Expat.so
